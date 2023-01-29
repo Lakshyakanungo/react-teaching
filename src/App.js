@@ -1,22 +1,12 @@
 import "./App.css";
-import {
-  Heading,
-  Section1,
-  Section2,
-  Section3,
-  Topper,
-  SideNavbar,
-} from "./components";
+import Fruits from "./components/Fruits";
 
 function App() {
+  const fruits = ["Apple", "Banana", "Orange", "kiwi", "pineapple"];
   return (
     <div className="App">
-      <Heading />
-      <Section1 />
-      <Section2 />
-      <Section3 />
-      <SideNavbar />
-      <Topper />
+      <p>These are all the fruits we have available with us</p>
+      <Fruits items={fruits} />
     </div>
   );
 }
