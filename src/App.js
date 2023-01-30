@@ -1,6 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-//updating of our data/state will change the data/state but it wont show on screen because react will only re render the component when we update the data/state using setState
+
+/*updating of our data/state will change the data/state but it wont show on screen because react will only re render the component when we update the data/state using setState
+ */
+
 function App() {
   // var counter = 0;
   const [counter, setCounter] = useState(0);
@@ -19,13 +22,20 @@ function App() {
   */
 
   function clickHandler() {
-    console.log(counter, "<--counter");
-    setCounter(counter + 1);
-    console.log(counter, "<--counter after click");
+    // console.log(counter, "<--counter");
+
+    // counter = counter + 1; // this wont caues rerender
+    setCounter(counter + 1); //but his would
+
+    // console.log(counter, "<--counter after click");
+  }
+  function clickHandler2() {
+    setCounter(counter - 1);
   }
   return (
     <div className="App">
       <button onClick={clickHandler}>Increment counter</button>
+      <button onClick={clickHandler2}>Decrement counter</button>
       <p>{counter}</p>
     </div>
   );
