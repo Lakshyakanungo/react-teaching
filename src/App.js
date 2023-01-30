@@ -1,12 +1,32 @@
 import "./App.css";
-import Fruits from "./components/Fruits";
-
+import { useState } from "react";
+//updating of our data/state will change the data/state but it wont show on screen because react will only re render the component when we update the data/state using setState
 function App() {
-  const fruits = ["Apple", "Banana", "Orange", "kiwi", "pineapple"];
+  // var counter = 0;
+  const [counter, setCounter] = useState(0);
+  /*
+  useState hook returns an array of size 2
+  [1st elt,2nd elt]
+  Array destructuring
+
+  the 1st element is the state/data variable
+  the 2nd element is the function which we use to update the state->
+
+  NOTE:- 
+    we can still update/change the state/data without the setState function
+    but it wont cause re-render so chnage wont get displayed on screen
+    but if we use setState fn then it would cause rerender of component and we will be able to see the change.
+  */
+
+  function clickHandler() {
+    console.log(counter, "<--counter");
+    setCounter(counter + 1);
+    console.log(counter, "<--counter after click");
+  }
   return (
     <div className="App">
-      <p>These are all the fruits we have available with us</p>
-      <Fruits items={fruits} />
+      <button onClick={clickHandler}>Increment counter</button>
+      <p>{counter}</p>
     </div>
   );
 }
