@@ -1,44 +1,59 @@
+import React, { useState } from "react";
 import "./App.css";
-import { useState } from "react";
 
-/*updating of our data/state will change the data/state but it wont show on screen because react will only re render the component when we update the data/state using setState
- */
+export default function App() {
+  const [Name, setName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
-function App() {
-  // var counter = 0;
-  const [counter, setCounter] = useState(0);
-  /*
-  useState hook returns an array of size 2
-  [1st elt,2nd elt]
-  Array destructuring
+  const [Submitted, setSubmitted] = useState(false);
 
-  the 1st element is the state/data variable
-  the 2nd element is the function which we use to update the state->
-
-  NOTE:- 
-    we can still update/change the state/data without the setState function
-    but it wont cause re-render so chnage wont get displayed on screen
-    but if we use setState fn then it would cause rerender of component and we will be able to see the change.
-  */
-
-  function clickHandler() {
-    // console.log(counter, "<--counter");
-
-    // counter = counter + 1; // this wont caues rerender
-    setCounter(counter + 1); //but his would
-
-    // console.log(counter, "<--counter after click");
+  function handleName(e) {
+    // console.log(Name, "<---name");
+    setName(e.target.value);
   }
-  function clickHandler2() {
-    setCounter(counter - 1);
+  function handleEmail(e) {
+    // console.log(Email, "<---name");
+    setEmail(e.target.value);
   }
+  function handlePassword(e) {
+    // console.log(Password, "<---name");
+    setPassword(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    console.log(Name, "<--name");
+    console.log(Email, "<--email");
+    console.log(Password, "<--password");
+
+    e.preventDefault();
+    if (Name !== "" && Email !== "" && Password !== "") {
+      setSubmitted(true);
+    } else {
+      console.log("error!");
+    }
+  }
+
   return (
-    <div className="App">
-      <button onClick={clickHandler}>Increment counter</button>
-      <button onClick={clickHandler2}>Decrement counter</button>
-      <p>{counter}</p>
+    <div>
+      <form>
+        <label>Name : </label>
+        <input type="text" onChange={handleName} name="name" value={Name} />
+        <br />
+        <label>Email :</label>
+        <input type="email" onChange={handleEmail} name="email" value={Email} />
+        <br />
+        <label>Password</label>
+        <input
+          type="password"
+          onChange={handlePassword}
+          name="password"
+          value={Password}
+        />
+        <br />
+        <button onClick={handleSubmit}>Submit</button>
+      </form>
+      {Submitted ? <p>Form Submitted</p> : ""}
     </div>
   );
 }
-
-export default App;
